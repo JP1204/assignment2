@@ -9,18 +9,27 @@ public class Code {
         this.code_str = code.toUpperCase();     // convert to upper case for easy testing
     }
 
+    public Code(Code c){
+        code_str = c.code_str;      // copy constructor
+    }
+
+
     // Getters
     public String getCode() {
         return code_str;
     }
 
     public void setCode_str(String code_str) {
-        this.code_str = code_str;
+        this.code_str = code_str.toUpperCase();
     }
 
 
     // check if code is valid
     public boolean isValidCode(){
+        if(code_str.equals("HISTORY")){
+            return true;
+        }
+
         if(code_str.length() > 4){
             return false;
         }

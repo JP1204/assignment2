@@ -37,7 +37,7 @@ public class Game {
 
             // check if code is valid
             while(!guessCode.isValidCode()){
-                System.out.println("Invalid Guess!");
+                System.out.println("\nInvalid Guess!");
                 promptGuess(roundCount);
 
                 // get new guess and check again
