@@ -39,6 +39,7 @@ public class Driver {
     }
 
 
+    // returns true if response is valid (History is not valid)
     public static boolean promptUser(Scanner scan) {
         System.out.println("Are you ready to play? (Y/N): ");
         String response = scan.nextLine();
@@ -51,7 +52,7 @@ public class Driver {
         else if(response.charAt(0) == 'y' || response.charAt(0) == 'Y')
             return true;
         else if(response.charAt(0) == 'n' || response.charAt(0) == 'N')
-            return true;
+            return false;
         else {
             System.out.println("Invalid Response");
             return promptUser(scan);

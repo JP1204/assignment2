@@ -10,7 +10,7 @@ public class Code {
     }
 
     public Code(Code c){
-        code_str = c.code_str;      // copy constructor
+        code_str = c.code_str.toUpperCase();      // copy constructor
     }
 
 
@@ -26,11 +26,7 @@ public class Code {
 
     // check if code is valid
     public boolean isValidCode(){
-        if(code_str.equals("HISTORY")){
-            return true;
-        }
-
-        if(code_str.length() > 4){
+        if(code_str.length() != 4){
             return false;
         }
 
