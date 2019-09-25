@@ -29,7 +29,7 @@ public class PegBoard {
 
         // first find number of black pegs
         for(int i = 0; i < secret_sb.length(); i++){
-            System.out.println("index : " + i + "\nsecret[i] = " + secret_sb.charAt(i) + " guess[i] = " + guess_sb.charAt(i));
+            // System.out.println("index : " + i + "\nsecret[i] = " + secret_sb.charAt(i) + " guess[i] = " + guess_sb.charAt(i));
             if(secret_sb.charAt(i) == guess_sb.charAt(i)){
                 numOfBlackPegs++;
                 // delete both char from strings to prevent reusing pegs

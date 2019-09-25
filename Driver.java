@@ -6,10 +6,18 @@ import java.util.Scanner;
 
 public class Driver {
     public static void main(String args[]) throws FileNotFoundException {
+        // configure game
+        GameConfiguration.setGuessNumber(12);
+        GameConfiguration.setPegNumber(4);
+        GameConfiguration.setColors(new String[]{"F", "G", "H", "J", "L", "K"});
         // get testing mode
         boolean testingMode;
-        int numOfGuesses = 12;
+        int numOfGuesses = GameConfiguration.getGuessNumber();
+        int codeLength = GameConfiguration.getPegNumber();
         Scanner scan = new Scanner(System.in);
+        // configure code
+        Code.setCode_length(GameConfiguration.getPegNumber());
+        Code.setValidColors(GameConfiguration.getColors());
 
         if(args.length != 1)
            return;
@@ -22,8 +30,6 @@ public class Driver {
         Game mastermindGame = new Game(testingMode, numOfGuesses, scan);
 
         // display greeting
-        boolean play = false;
-        System.out.println(System.getProperty("user.dir"));
         File greeting = new File(System.getProperty("user.dir") + "/src/assignment2/InitialGreeting.txt");
         Scanner sc = new Scanner(greeting);
         while(sc.hasNextLine()){
@@ -40,7 +46,7 @@ public class Driver {
 
 
     // returns true if response is valid (History is not valid)
-    public static boolean promptUser(Scanner scan) {
+    private static boolean promptUser(Scanner scan) {
         System.out.println("Are you ready to play? (Y/N): ");
         String response = scan.nextLine();
 

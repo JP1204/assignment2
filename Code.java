@@ -2,31 +2,35 @@ package assignment2;
 
 public class Code {
     private String code_str;
-    private final static char[] validColors = {'B', 'G', 'O', 'P', 'R', 'Y'};
+    private static int code_length;
+    private static String[] validColors;
 
     // Constructor
     public Code(String code) {
         this.code_str = code.toUpperCase();     // convert to upper case for easy testing
     }
 
-    public Code(Code c){
-        code_str = c.code_str.toUpperCase();      // copy constructor
-    }
 
-
-    // Getters
+    // Getters & Setters
     public String getCode() {
         return code_str;
     }
-
+    public static int getCode_length() {
+        return code_length;
+    }
     public void setCode_str(String code_str) {
         this.code_str = code_str.toUpperCase();
     }
-
+    public static void setCode_length(int code_length) {
+        Code.code_length = code_length;
+    }
+    public static void setValidColors(String[] validColors) {
+        Code.validColors = validColors;
+    }
 
     // check if code is valid
     public boolean isValidCode(){
-        if(code_str.length() != 4){
+        if(code_str.length() != code_length){
             return false;
         }
 
@@ -40,11 +44,15 @@ public class Code {
 
     private boolean isValidColor(char target){
         // check if color is in color array
-        for(char color : validColors){
-            if(color == target){
+        for(String color : validColors){
+            if(color.charAt(0) == target){
                 return true;
             }
         }
         return false;
+    }
+
+    private void addColor(char color){
+        // sdjoigjsdlkgnlskdjglsd
     }
 }

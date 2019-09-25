@@ -21,12 +21,12 @@ public class Game {
 
     public void runGame(){
         boolean gameOver = false;
-        boolean win = false;
-
         while(!gameOver){
             // generate code
             System.out.println("Generating secret code ...");
             Code secretCode = new Code(SecretCodeGenerator.getInstance().getNewSecretCode());
+            int code_length = GameConfiguration.getPegNumber();
+
             // display secret code if testingMode is true
             if(testingMode)
                 System.out.printf("The secret code is %s\n\n", secretCode.getCode());
@@ -42,6 +42,7 @@ public class Game {
 
                 // check if code is valid
                 while (!guessCode.isValidCode()) {
+                    // display history if asked by player
                     if (guessCode.getCode().equals("HISTORY"))
                         history.displayHistory();
                     else
@@ -51,8 +52,6 @@ public class Game {
                     // get new guess and check again
                     String newGuess = scan.nextLine();
                     guessCode.setCode_str(newGuess);
-                    // display history if asked by player
-                    System.out.println(guessCode.getCode());
                 }
 
                 // generate pegs for the given guess code
@@ -65,13 +64,12 @@ public class Game {
 
                 // increment round counter and check if game is over
                 roundCount++;
-                if(pegBoard.getNumOfBlackPegs() == 4){
+                if(pegBoard.getNumOfBlackPegs() == code_length){
                     // all colors and positions were correct
-                    win = true;
                     System.out.println("Congratulations, you win!");
+                    break;
                 }
                 else if(roundCount == numOfGuesses){
-                    win = false;
                     System.out.println("Sorry, you are out of guesses. You lose, boo-hoo");
                 }
             }
@@ -82,14 +80,14 @@ public class Game {
     }
 
 
-    public void promptGuess(int roundCount){
+    private void promptGuess(int roundCount){
         System.out.printf("You have %d guesses left.\nWhat is your next guess?\n" +
                 "Type in the characters for your guess and press enter.\nEnter Guess: ", numOfGuesses-roundCount);
     }
 
 
     // returns true if user want to play another game
-    public static boolean promptAnotherGame(Scanner scan) {
+    private static boolean promptAnotherGame(Scanner scan) {
         System.out.println("Are you ready for another game? (Y/N): ");
         String response = scan.nextLine();
 
